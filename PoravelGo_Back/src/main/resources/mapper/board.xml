@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+    namespace="com.poravelgo.board.model.mapper.BoardMapper">
+
+    <resultMap type="boardDto" id="board">
+        <result column="no" property="boardNo" />
+        <result column="writer" property="userId" />
+        <result column="title" property="subject" />
+        <result column="content" property="content" />
+        <result column="heart" property="heart" />
+        <result column="hit" property="hit" />
+        <result column="register_time" property="registerTime" />
+        <result column="member_no" property="memberNo" />
+    </resultMap>
+    
+    <select id="searchListAll" resultMap="board">
+        select no, title, content, writer, hit, heart, register_time, member_no
+		from board
+    </select>
+    <insert id="registerBoard" parameterType="boardDto">
+        insert into board(writer, title, content, member_no)
+        values(#{userId}, #{subject}, #{content}, 1)
+    </insert>
+    <delete id="deleteArticle" parameterType="Int">
+        delete from board
+         where no = #{no}
+    </delete>
+    <select id="viewArticle" parameterType="Int" resultMap="board">
+        select no, writer, title, content, hit, register_time
+          from board
+         where no = #{no}
+    </select>
+    <update id="updateHit" parameterType="Int">
+    	update board set hit = hit + 1 where no = #{no};
+    </update>
+    <update id="updateHeart" parameterType="Int">
+    	update board set heart = heart + 1 where no = #{no};
+    </update>
+    <select id="selectBoardCount" resultType="Int">
+        select count(*)
+          from board
+    </select>
+    <select id="selectBoard" parameterType="map" resultMap="board">
+        select no, title, content, writer, hit, heart, register_time, member_no
+		from board
+         order by no desc
+         limit #{start}, #{end}
+    </select>
+    <update id="modifyArticle" parameterType="boardDto">
+         update board
+            set title = #{subject},
+                content = #{content} 
+          where no = #{boardNo}
+    </update>
+    
+    <select id="searchListBySubject" parameterType="String" resultMap="board">
+        select no, title, content, writer, hit, heart, register_time, member_no
+          from board
+         where title like concat('%',#{subject},'%')
+    </select>
+</mapper>
