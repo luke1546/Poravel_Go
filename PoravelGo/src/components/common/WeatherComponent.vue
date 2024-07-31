@@ -148,7 +148,7 @@ function selectsearch() {
 </template>
 
 <style scoped>
-@import url("../../../dist/output.css");
+@import url("../../assets/css/output.css");
 @import url("@/assets/css/colorful-mobile-navigation-bar.css");
 .navbar {
     background-color: rgba(0, 0, 0, 0);

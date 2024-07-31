@@ -2,6 +2,9 @@
 import axios from "axios";
 import { ref, onMounted, watch } from "vue";
 import { useAttractionNo } from "../stores/counter";
+const { VITE_BACK_SERVER } = import.meta.env;
+
+
 const { VITE_ATTRACTION_SERVICE_KEY, VITE_ATTRACTION_URL, VITE_LOCATION, VITE_DETAIL_KEYWORD } =
     import.meta.env;
 const radioValue = ref(12);
@@ -16,26 +19,14 @@ const totalCount = ref(0);
 
 async function getAttractionInfo() {
     attractions.value = (
-        await axios.get(VITE_ATTRACTION_URL + VITE_LOCATION, {
-            params: {
-                serviceKey: VITE_ATTRACTION_SERVICE_KEY,
-                numOfRows,
-                pageNo,
-                MobileOS: "ETC",
-                MobileApp: "AppTest",
-                _type: "json",
-                listYN: "Y",
-                arrange: "A",
-                mapX: "126.981611",
-                mapY: "37.568477",
-                radius: "1000",
-                contentTypeId: radioValue.value,
-            },
+        await axios.get(VITE_BACK_SERVER + "attraction/list", {
+            params: {},
         })
-    ).data?.response?.body;
-    searchType.value = "list";
-    totalCount.value = attractions.value?.totalCount;
-    attractions.value = attractions.value?.items?.item;
+    ).data;
+    // searchType.value = "list";
+    // totalCount.value = attractions.value?.totalCount;
+    console.log(totalCount.value);
+    console.log(attractions.value);
 }
 
 async function getAttractionKeywordInfo() {
@@ -60,6 +51,8 @@ async function getAttractionKeywordInfo() {
     searchType.value = "keyword";
     totalCount.value = attractions?.value?.totalCount;
     attractions.value = attractions?.value?.items?.item;
+    console.log(totalCount.value);
+    console.log(attractions.value);
 }
 watch(
     () => searchType.value,
@@ -151,8 +144,8 @@ getAttractionInfo();
         <div class="masonry">
             <div class="grid" v-for="attraction in attractions">
                 <!-- <div v-if="totalCount==0">검색결과가 없습니다.</div> -->
-                <div v-if="attraction?.firstimage">
-                    <img class="img fade" :src="attraction?.firstimage" />
+                <div v-if="attraction?.firstImage">
+                    <img class="img fade" :src="attraction?.firstImage" />
                     <div class="grid__body">
                         <div class="relative">
                             <router-link to="/attractionDetail"
@@ -160,7 +153,7 @@ getAttractionInfo();
                                     class="grid__link"
                                     target="_blank"
                                     href="#"
-                                    @click="attractionNo.getNo(attraction.contentid)"
+                                    @click="attractionNo.getNo(attraction.contentId)"
                                 ></a
                             ></router-link>
                             <h1 class="grid__title">{{ attraction.title }}</h1>
@@ -249,36 +242,6 @@ getAttractionInfo();
     left: 50%;
     bottom: 20px;
 }
-
-/* radio */
-
-/* .label{
-  color: white;
-  background-color: #343a40;
-  border-radius: 50px;
-  padding-inline: var(--size-3);
-  padding-block: var(--size-1);
-  cursor: pointer;
-}
-.active{
-  color: black;
-  background-color: #91a7ff;
-}
-.radio{
-  appearance: none;
-  background: none;
-  border: none;
-  inline-size: 100%;
-  block-size: 100%;
-}
-.taglist {
-  margin:auto;
-  width: 650px;
-  padding: 0;
-  border: none;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-} */
 
 .label{
   color: white;

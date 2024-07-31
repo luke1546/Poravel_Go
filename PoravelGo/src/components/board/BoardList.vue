@@ -133,7 +133,7 @@ const userId = ref(jwtDecode(sessionStorage.getItem("accessToken")).userId);
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&display=swap");
-@import url("../../../dist/output.css");
+@import url("../../assets/css/output.css");
 body {
     justify-content: center;
     color: #111827;

@@ -1,5 +1,12 @@
 package com.poravelgo.board.model;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Data
+@Getter
+@Setter
 public class PageDto {
 	private int pageNo;
 	private int listSize;

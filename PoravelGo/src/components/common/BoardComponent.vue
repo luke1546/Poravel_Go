@@ -101,7 +101,7 @@ function addLike() {
 </template>
 
 <style scoped>
-@import url("../../../dist/output.css");
+@import url("../../assets/css/output.css");
 /* Global CSS and Sass mixins defined in codepen.io/jsulpis/pen/ExdxLgM */
 
 .movie-card {

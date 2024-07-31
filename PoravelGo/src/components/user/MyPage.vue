@@ -230,7 +230,7 @@ function getPokemonNo(no) {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
-@import url("../../../dist/output.css");
+@import url("../../assets/css/output.css");
 @import url("../../assets/css/mypage.css");
 
 .dot {
