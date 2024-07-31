@@ -22,8 +22,11 @@ public class AttractionServiceImpl implements AttractionService {
 	}
 
 	@Override
-	public List<AttractionInfoDto> searchByTitle(String title, int sidoCode) {
-		return attractionMapper.searchByTitle(title, sidoCode);
+	public List<AttractionInfoDto> searchByTitle(String title) {
+		return attractionMapper.searchByTitle(title);
 	}
-
+	@Override
+	public List<AttractionInfoDto> searchByTitle2(String title) {
+		return attractionMapper.searchByTitle(title);
+	}
 }

@@ -23,7 +23,7 @@ async function getAttractionInfo() {
             params: {},
         })
     ).data;
-    // searchType.value = "list";
+    searchType.value = "list";
     // totalCount.value = attractions.value?.totalCount;
     console.log(totalCount.value);
     console.log(attractions.value);
@@ -32,28 +32,41 @@ async function getAttractionInfo() {
 async function getAttractionKeywordInfo() {
     const keyword = document.getElementById("search").value;
     attractions.value = (
-        await axios.get(VITE_ATTRACTION_URL + VITE_DETAIL_KEYWORD, {
-            params: {
-                serviceKey: VITE_ATTRACTION_SERVICE_KEY,
-                numOfRows,
-                pageNo,
-                MobileOS: "ETC",
-                MobileApp: "AppTest",
-                _type: "json",
-                listYN: "Y",
-                arrange: "A",
-                keyword,
-                contentTypeId: 12,
-            },
+        await axios.get(VITE_BACK_SERVER + "attraction/search", {
+            params: {title : keyword},
         })
-    ).data?.response?.body;
+    ).data;
 
     searchType.value = "keyword";
-    totalCount.value = attractions?.value?.totalCount;
-    attractions.value = attractions?.value?.items?.item;
     console.log(totalCount.value);
     console.log(attractions.value);
 }
+// async function getAttractionKeywordInfo() {
+//     const keyword = document.getElementById("search").value;
+//     attractions.value = (
+//         await axios.get(VITE_ATTRACTION_URL + VITE_DETAIL_KEYWORD, {
+//             params: {
+//                 serviceKey: VITE_ATTRACTION_SERVICE_KEY,
+//                 numOfRows,
+//                 pageNo,
+//                 MobileOS: "ETC",
+//                 MobileApp: "AppTest",
+//                 _type: "json",
+//                 listYN: "Y",
+//                 arrange: "A",
+//                 keyword,
+//                 contentTypeId: 12,
+//             },
+//         })
+//     ).data?.response?.body;
+
+//     searchType.value = "keyword";
+//     totalCount.value = attractions?.value?.totalCount;
+//     attractions.value = attractions?.value?.items?.item;
+//     console.log(totalCount.value);
+//     console.log(attractions.value);
+// }
+
 watch(
     () => searchType.value,
     () => {

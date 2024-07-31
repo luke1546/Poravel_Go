@@ -61,14 +61,14 @@
                latitude, longitude, mlevel
           from attraction_info 
 	         order by content_id asc
-          limit 10
+          limit 20
     </select>
     
     <select id="searchByTitle" parameterType="map" resultMap="attractionInfoDto">
         select content_id, content_type_id, title, addr1, addr2, zipcode, tel,
                first_image, first_image2, readcount, sido_code, gugun_code, latitude, longitude, mlevel
           from attraction_info
-         where sido_code = #{code} and title like concat('%', #{title}, '%')
+         where title like concat('%', #{title}, '%')
          order by content_id asc
     </select>
     

@@ -10,5 +10,5 @@ import com.poravelgo.attraction.model.AttractionInfoDto;
 @Mapper
 public interface AttractionMapper {
 	List<AttractionInfoDto> attractionList(AttractionInfoDto attractionInfoDto);
-	List<AttractionInfoDto> searchByTitle(@Param("title") String title, @Param("code") int sidoCode);
+	List<AttractionInfoDto> searchByTitle(@Param("title") String title);
 }
