@@ -2,6 +2,7 @@ package com.poravelgo.attraction.model.service;
 
 import java.util.List;
 
+import com.poravelgo.attraction.model.AttractionHashDto;
 import org.springframework.stereotype.Service;
 
 import com.poravelgo.attraction.model.AttractionInfoDto;
@@ -25,6 +26,12 @@ public class AttractionServiceImpl implements AttractionService {
 	public List<AttractionInfoDto> searchByTitle(String title) {
 		return attractionMapper.searchByTitle(title);
 	}
+
+	@Override
+	public AttractionHashDto[] loadData() {
+		return attractionMapper.loadData();
+	}
+
 	@Override
 	public List<AttractionInfoDto> searchByTitle2(String title) {
 		return attractionMapper.searchByTitle(title);

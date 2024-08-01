@@ -12,5 +12,5 @@ public interface AttractionService {
 	List<AttractionInfoDto> searchByTitle(String title);
 	List<AttractionInfoDto> searchByTitle2(String title);
 
-//	AttractionHashDto[] loadData();
+	AttractionHashDto[] loadData();
 }

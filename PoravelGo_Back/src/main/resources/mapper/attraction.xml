@@ -71,5 +71,10 @@
          where title like concat('%', #{title}, '%')
          order by content_id asc
     </select>
+
+    <select id="loadData" resultMap="attractionHashDto">
+        select content_id, title
+        from attraction_info
+    </select>
     
 </mapper>
